@@ -67,7 +67,7 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
 
             <div id='game-board'>
                 {pokemons.map((pokemon, index) => {
-                    return <Card pokemon={pokemon} key={pokemon.pokedexNum + "" + index} />
+                    return <Card pokemon={pokemon} key={pokemon.pokedexNum + " " + index} />
                 }) // Use index as there may be duplicate pokemon cards entries
                 }
             </div>
