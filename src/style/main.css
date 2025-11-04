@@ -1,0 +1,67 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+    /* Background Colors */
+    --bg-0: #181818;
+    --bg-1: #252525;
+    --bg-2: #3b3b3b;
+
+    /* Dim and Foreground Colors */
+    --dim-0: #777777;
+    --fg-0: #b9b9b9;
+    --fg-1: #dedede;
+
+    /* Primary Colors */
+    --red: #ed4a46;
+    --green: #70b433;
+    --yellow: #dbb32d;
+    --blue: #368aeb;
+    --magenta: #eb6eb7;
+    --cyan: #3fc5b7;
+    --orange: #e67f43;
+    --violet: #a580e2;
+
+    /* Bright Colors */
+    --br-red: #ff5e56;
+    --br-green: #83c746;
+    --br-yellow: #efc541;
+    --br-blue: #4f9cfe;
+    --br-magenta: #ff81ca;
+    --br-cyan: #56d8c9;
+    --br-orange: #fa9153;
+    --br-violet: #b891f5;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+    /* Background Colors */
+    --bg-0: #ffffff;
+    --bg-1: #ebebeb;
+    --bg-2: #cdcdcd;
+
+    /* Dim and Foreground Colors */
+    --dim-0: #878787;
+    --fg-0: #474747;
+    --fg-1: #282828;
+
+    /* Primary Colors */
+    --red: #d6000c;
+    --green: #1d9700;
+    --yellow: #c49700;
+    --blue: #0064e4;
+    --magenta: #dd0f9d;
+    --cyan: #00ad9c;
+    --orange: #d04a00;
+    --violet: #7f51d6;
+
+    /* Bright Colors */
+    --br-red: #bf0000;
+    --br-green: #008400;
+    --br-yellow: #af8500;
+    --br-blue: #0054cf;
+    --br-magenta: #c7008b;
+    --br-cyan: #009a8a;
+    --br-orange: #ba3700;
+    --br-violet: #6b40c3;
+    }
+}
