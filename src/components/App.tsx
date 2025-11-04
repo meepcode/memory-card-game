@@ -3,8 +3,8 @@ import '../style/App.css'
 import Game from './Game.tsx'
 
 function App() {
-  const [ numCards, setNumCards ] = useState(12);
-  const [ numDisplay, setNumDisplay ] = useState(12);
+  const [ numCards, setNumCards ] = useState(4);
+  const [ numDisplay, setNumDisplay ] = useState(4);
 
   return (
     <>
@@ -22,10 +22,10 @@ function App() {
         </app>
       */}
 
-      <header>
+      <div id='title'>
         <h1>Memory card game</h1>
         <p><strong>How to play:</strong> For each card that you click that you haven't clicked before, you get a point. If you click a card that you've already clicked, you lose. The goal is to click every card</p>
-      </header>
+      </div>
       <form>
         <p>
           <label id='num-cards-label' htmlFor='num-cards'>
