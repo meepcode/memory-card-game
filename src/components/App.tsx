@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import './App.css'
+import '../style/App.css'
+import Game from './Game.tsx'
 
 function App() {
   const [ numCards, setNumCards ] = useState(12);
@@ -54,7 +55,9 @@ function App() {
             value={numDisplay} 
           />
         </p>
+
       </form>
+      <Game numCards={numCards} numDisplay={numDisplay}/>
     </>
   )
 }
