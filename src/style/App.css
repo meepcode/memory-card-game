@@ -1,0 +1,10 @@
+@import url('/src/style/index.css');
+
+Fragment {
+    background-color: var(--fg-1)
+}
+
+#title {
+    text-align: center;
+    margin: 10px 0px;
+}

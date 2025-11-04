@@ -18,10 +18,8 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
     const [ bestScore, setBestScore ] = useState(0);
     const [ cardsSelected, setCardsSelected ] = useState(new Set([]));
     const [ pokemons, setPokemons ] = useState(new Array<Pokemon>());
-    const [ numGames, setNumGames ] = useState(0);
 
-    useEffect(() => {
-        console.log("Hello")
+    const loadPokemon = () => {
         async function getPokemons() {
             const array = bagRandomizer(fillArray(1, 151), numCards);
             let localPokemons: Pokemon[] = []
@@ -32,7 +30,11 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
             setPokemons(localPokemons);
         }
         getPokemons()
-    }, [numGames]);
+    }
+
+    useEffect(() => {
+        loadPokemon();
+    }, []);
 
     function bagRandomizer<T>(initArray: T[], count: number): T[] {
         const bag = [];
@@ -63,6 +65,7 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
             <div id='score'>
                 <p>Score: {score}</p>
                 <p>Best Score: {bestScore}</p>
+                <input type='number' onChange={(e) => setScore(e.target.valueAsNumber)} />
             </div>
 
             <div id='game-board'>
