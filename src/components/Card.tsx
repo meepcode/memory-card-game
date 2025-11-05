@@ -2,7 +2,7 @@
 import type { Pokemon } from './Game.tsx'
 import '../style/card.css'
 
-function Card({ pokemon }: { pokemon: Pokemon }) {
+function Card({ pokemon, onClick }: { pokemon: Pokemon, onClick: () => void }) {
     // console.log(pokemon)
 
     return (
