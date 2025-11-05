@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import '../style/App.css'
+import { useEffect, useState } from 'react'
+import '../style/app.css'
 import Game from './Game.tsx'
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   const [ numDisplay, setNumDisplay ] = useState(4);
 
   return (
-    <>
+    <div id='app'>
       {/*
         App Structure:
         
@@ -58,7 +58,7 @@ function App() {
 
       </form>
       <Game numCards={numCards} numDisplay={numDisplay}/>
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,9 @@
+@import url('/src/style/main.css');
+
+#game-board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: horizontal;
+}

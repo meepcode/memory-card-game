@@ -65,3 +65,9 @@
     --br-violet: #6b40c3;
     }
 }
+
+body {
+    background-color: var(--bg-0);
+    color: var(--fg-0);
+    /* font-family: sans-serif; */
+}

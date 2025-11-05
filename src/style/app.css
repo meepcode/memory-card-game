@@ -1,4 +1,4 @@
-@import url('/src/style/index.css');
+@import url('/src/style/main.css');
 
 Fragment {
     background-color: var(--fg-1)
