@@ -60,6 +60,7 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
     }
 
     const newGame = () => {
+        setGameWin(false);
         setScore(0);
         setCardsSelected(new Set());
         loadPokemon();
