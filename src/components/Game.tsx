@@ -68,6 +68,7 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
 
     const onClickPokemon = (pokemon: Pokemon) => {
         if (cardsSelected.has(pokemon)) {
+            alert("You lost");
             newGame();   
             return;
         } else {
