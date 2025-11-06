@@ -7,3 +7,50 @@
     align-items: flex-start;
     flex-direction: horizontal;
 }
+
+.won {
+    display: grid
+}
+
+.won > * {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.won > .item {
+    animation: spinAround 15s linear infinite;
+}
+
+.item > * {
+    animation: selfRotate 15s linear infinite reverse;
+}
+
+#wonButtonDiv {
+    position: relative;
+}
+
+#wonButtonDiv > button {
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    margin-inline: auto;
+    width: fit-content;
+    bottom: 10px;
+}
+
+/* Taken from the interwebs: https://www.kirupa.com/animations/rotating_items_around_a_point.htm */
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg) translate(140px) scale(.7);
+    } to {
+        transform: rotate(360deg) translate(140px) scale(.7);
+    }
+}
+
+@keyframes selfRotate {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}

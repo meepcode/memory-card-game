@@ -20,6 +20,9 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
     const [ cardsSelected, setCardsSelected ] = useState(new Set<Pokemon>([]));
     const [ pokemons, setPokemons ] = useState(new Array<Pokemon>());
     const [ pokemonCards, setPokemonCards ] = useState(new Array<Pokemon>());
+    const [ gameWin, setGameWin ] = useState(Boolean);
+
+    const winAnimationTime: number = 15
 
     const loadPokemon = () => {
         async function getPokemons() {
@@ -32,15 +35,13 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
             setPokemons(localPokemons);
             return localPokemons
         }
-        getPokemons().then((localPokemons) => {
-            dealPokemon(localPokemons);
-        });
+        getPokemons()
     }
 
     const dealPokemon = (localPokemons: Pokemon[] = pokemons) => {
         // pick one pokemon that has not yet been shown
         const unusedPokemons = localPokemons.filter((pokemon) => !cardsSelected.has(pokemon));
-        console.log(unusedPokemons);
+        // console.log("Unclicked Pokemons: ", unusedPokemons, "Clicked Pokemons: ", cardsSelected);
         const newPokemon = unusedPokemons[Math.floor(Math.random() * unusedPokemons.length)]; 
         // put that in pokemonCards array
         let pokemonCardsTemp = [newPokemon];
@@ -53,28 +54,50 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
         // shuffle the pokemonCards array
         pokemonCardsTemp = bagRandomizer(pokemonCardsTemp, pokemonCardsTemp.length);
         if (pokemonCardsTemp.length !== numDisplay) {
-            alert("Temp Cards: " + pokemonCardsTemp.length + " Num Display: " + numDisplay);
+            console.error("Temp Cards: " + pokemonCardsTemp.length + " Num Display: " + numDisplay);
         }
         setPokemonCards(pokemonCardsTemp);
     }
 
+    const newGame = () => {
+        setScore(0);
+        setCardsSelected(new Set());
+        loadPokemon();
+    }
+
     const onClickPokemon = (pokemon: Pokemon) => {
         if (cardsSelected.has(pokemon)) {
-            setScore(0);
-            setBestScore(bestScore > score ? bestScore : score);
-            setCardsSelected(new Set());
-            loadPokemon();
+            newGame();   
             return;
         } else {
-            setCardsSelected(new Set([...cardsSelected, pokemon]));
             setScore(score + 1);
-            dealPokemon();
+            if (cardsSelected.size === pokemons.length - 1) {
+                setGameWin(true);
+            } else {
+                setCardsSelected(new Set([...cardsSelected, pokemon]));
+            }
         }
     }
 
     useEffect(() => {
         loadPokemon();
     }, []);
+
+    useEffect(() => {
+        if (score > bestScore) {
+            setBestScore(score);
+        }
+    }, [score])
+
+    useEffect(() => {
+        if (pokemons.length !== 0) {
+            dealPokemon();
+        }
+    }, [cardsSelected, pokemons, numDisplay])
+
+    useEffect(() => {
+        newGame();
+    }, [numCards]);
 
     function bagRandomizer<T>(initArray: T[], count: number): T[] {
         const bag = [];
@@ -107,9 +130,30 @@ function Game({ numCards, numDisplay }: { numCards: number, numDisplay: number }
             </div>
 
             <div id='game-board'>
-                {pokemonCards.map((pokemon, index) => {
-                    return <Card pokemon={pokemon} key={pokemon.pokedexNum + " " + index} onClick={() => {onClickPokemon(pokemon)}}/>
-                }) // Use index as there may be duplicate pokemon cards entries
+                {gameWin ? (
+                    <div className='won'>
+                        <h1>You Win!</h1>
+                        <div id='wonButtonDiv'>
+                            <button onClick={newGame}>New Game</button>
+                        </div>
+                        {pokemons.map((pokemon, index) => {
+                            let animationDelay = winAnimationTime / numCards * index * -1
+                            return (
+                                <div className='item' style={{animationDelay: animationDelay + "s"}}>
+                                    <img 
+                                        src={pokemon.image}
+                                        className='subItem'
+                                        width={100}
+                                        height={100}
+                                        style={{animationDelay: animationDelay + "s"}}
+                                        />
+                                </div>
+                            )
+                        })}
+                    </div>
+                ) : pokemonCards.map((pokemon, index) => {
+                        return <Card pokemon={pokemon} key={pokemon.pokedexNum + " " + index} onClick={() => {onClickPokemon(pokemon)}}/> // Use index as there may be duplicate pokemon cards entries
+                    }) 
                 }
             </div>
         </>
